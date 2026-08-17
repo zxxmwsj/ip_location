@@ -3,123 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IP归属地查询工具 - 快速查询IP地址归属地信息</title>
-    <meta name="description" content="免费在线IP归属地查询工具，支持查询任意IP地址的国家、地区、城市、运营商等详细信息。">
-    <meta name="keywords" content="IP查询,IP归属地,IP地址查询,IP定位,IP地理位置">
+    <meta name="theme-color" content="#0d1b2a">
+    <title>IP Atlas — IP归属地查询</title>
+    <meta name="description" content="快速查询 IP 地址的国家、地区、城市、运营商、坐标和时区信息。">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container">
-        <nav class="top-nav">
-            <ul>
-                <li><a href="index.html" class="active">首页</a></li>
-                <li><a href="about.html">关于</a></li>
-            </ul>
+    <div class="page-shell">
+        <nav class="top-nav" aria-label="主导航">
+            <a class="brand" href="index.html" aria-label="IP Atlas 首页">
+                <span class="brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <circle cx="12" cy="12" r="8.25"></circle>
+                        <path d="M3.9 9.5h16.2M3.9 14.5h16.2M12 3.75c2.1 2.2 3.15 4.95 3.15 8.25S14.1 18.05 12 20.25c-2.1-2.2-3.15-4.95-3.15-8.25S9.9 5.95 12 3.75Z"></path>
+                    </svg>
+                </span>
+                <span class="brand-copy"><strong>IP Atlas</strong><small>网络归属地查询</small></span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="active">查询</a>
+                <a href="about.html">关于</a>
+            </div>
         </nav>
 
-        <header>
-            <h1>🌍 IP归属地查询</h1>
-            <p class="subtitle">查询IP地址的详细归属地信息</p>
-        </header>
+        <main>
+            <section class="hero" aria-labelledby="hero-title">
+                <div class="eyebrow"><span class="eyebrow-dot"></span>实时 IP intelligence</div>
+                <h1 id="hero-title">知道一个 IP，<span>了解它所在的世界。</span></h1>
+                <p>输入一个 IPv4 地址，快速查看它的网络归属地、运营商和地理信息。</p>
+                <div class="hero-meta" aria-label="服务特点">
+                    <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>无需注册</span>
+                    <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v4m0 10v4M3 12h4m10 0h4M5.64 5.64l2.83 2.83m7.06 7.06 2.83 2.83m0-12.72-2.83 2.83m-7.06 7.06-2.83 2.83"></path></svg>快速响应</span>
+                    <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19 6v5.1c0 4.25-2.95 7.95-7 9.4-4.05-1.45-7-5.15-7-9.4V6l7-2.5Z"></path><path d="m9.25 12 1.8 1.8 3.7-3.7"></path></svg>仅供参考</span>
+                </div>
+            </section>
 
-        <!-- 搜索区域 -->
-        <div class="search-section">
-            <div class="search-box">
-                <input
-                    type="text"
-                    id="ipInput"
-                    placeholder="请输入IP地址（如：8.8.8.8）"
-                    autocomplete="off"
-                >
-                <button id="searchBtn" onclick="queryIP()">
-                    <span class="btn-text">查询</span>
-                    <span class="btn-icon">🔍</span>
-                </button>
-            </div>
-            <div class="quick-actions">
-                <button class="btn-secondary" onclick="queryMyIP()">
-                    <span>📍 查询我的IP</span>
-                </button>
-            </div>
-        </div>
+            <section class="search-card" aria-labelledby="search-title">
+                <div class="card-heading">
+                    <div>
+                        <p class="section-kicker">LOOKUP</p>
+                        <h2 id="search-title">查询 IP 地址</h2>
+                    </div>
+                    <span class="card-note">支持 IPv4 格式</span>
+                </div>
+                <form id="lookupForm" class="search-box" onsubmit="event.preventDefault(); queryIP();">
+                    <label class="sr-only" for="ipInput">IP 地址</label>
+                    <div class="input-wrap">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17Z"></path><path d="M3.9 9.5h16.2M3.9 14.5h16.2M12 3.75c2.1 2.2 3.15 4.95 3.15 8.25S14.1 18.05 12 20.25c-2.1-2.2-3.15-4.95-3.15-8.25S9.9 5.95 12 3.75Z"></path></svg>
+                        <input type="text" id="ipInput" inputmode="decimal" placeholder="例如 8.8.8.8" autocomplete="off" spellcheck="false">
+                    </div>
+                    <button id="searchBtn" type="submit">
+                        <span class="btn-text">开始查询</span>
+                        <svg class="btn-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5"></path></svg>
+                    </button>
+                </form>
+                <div class="search-footer">
+                    <span class="helper-text">也可以先看看你当前网络的公网 IP</span>
+                    <button class="btn-secondary" type="button" onclick="queryMyIP()">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s6-5.1 6-10.2a6 6 0 1 0-12 0c0 5.1 6 10.2 6 10.2Z"></path><circle cx="12" cy="10.3" r="2.1"></circle></svg>
+                        查询我的 IP
+                    </button>
+                </div>
+            </section>
 
-        <!-- 加载提示 -->
-        <div id="loading" class="loading" style="display: none;">
-            <div class="spinner"></div>
-            <p>正在查询IP信息...</p>
-        </div>
-
-        <!-- 错误提示 -->
-        <div id="error" class="error" style="display: none;"></div>
-
-        <!-- IP信息显示 -->
-        <div id="ipInfo" class="ip-info" style="display: none;">
-            <div class="info-header">
-                <h2 id="ipAddress"></h2>
-                <span id="ipType" class="ip-type"></span>
-            </div>
-            <div class="info-grid">
-                <div class="info-item">
-                    <span class="info-label">🌏 国家/地区</span>
-                    <span class="info-value" id="country"></span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">📍 省份/州</span>
-                    <span class="info-value" id="region"></span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">🏙️ 城市</span>
-                    <span class="info-value" id="city"></span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">📮 邮编</span>
-                    <span class="info-value" id="zip"></span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">🌐 运营商</span>
-                    <span class="info-value" id="isp"></span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">🏢 组织</span>
-                    <span class="info-value" id="org"></span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">📡 经纬度</span>
-                    <span class="info-value" id="location"></span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">⏰ 时区</span>
-                    <span class="info-value" id="timezone"></span>
-                </div>
+            <div id="loading" class="loading" role="status" aria-live="polite" style="display: none;">
+                <span class="loading-mark" aria-hidden="true"></span>
+                <div><strong>正在获取 IP 信息</strong><p>通常只需要几秒钟</p></div>
             </div>
 
-            <!-- 地图容器 -->
-            <div class="map-container">
-                <h3>🗺️ 地理位置</h3>
-                <div id="mapLink" class="map-link"></div>
-            </div>
-        </div>
+            <div id="error" class="error" role="alert" aria-live="assertive" style="display: none;"></div>
 
-        <div class="instructions">
-            <h3>📖 使用说明</h3>
-            <ul>
-                <li>在输入框中输入要查询的IP地址（支持IPv4格式）</li>
-                <li>点击"查询"按钮获取该IP的归属地信息</li>
-                <li>点击"查询我的IP"按钮可以快速查询您当前的IP地址信息</li>
-                <li>查询结果包括：国家、地区、城市、运营商、经纬度、时区等详细信息</li>
-                <li>支持查看IP地理位置的地图链接</li>
-            </ul>
-            <div class="api-notice">
-                <strong>提示：</strong>本工具使用免费API服务，查询结果仅供参考。
-            </div>
-        </div>
+            <section id="ipInfo" class="ip-info" aria-labelledby="result-title" style="display: none;">
+                <div class="info-header">
+                    <div>
+                        <p class="section-kicker">RESULT</p>
+                        <h2 id="result-title"><span id="ipAddress"></span></h2>
+                    </div>
+                    <span id="ipType" class="ip-type"><span class="status-dot"></span></span>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-item"><span class="info-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s6-5.1 6-10.2a6 6 0 1 0-12 0c0 5.1 6 10.2 6 10.2Z"></path><circle cx="12" cy="10.3" r="2.1"></circle></svg>国家 / 地区</span><span class="info-value" id="country"></span></div>
+                    <div class="info-item"><span class="info-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5h16M5.5 17V7.5L12 4l6.5 3.5V17M8.5 17v-4h7v4M8.5 9.5h.01M12 9.5h.01M15.5 9.5h.01"></path></svg>省份 / 州</span><span class="info-value" id="region"></span></div>
+                    <div class="info-item"><span class="info-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10l8-6 8 6v10M8 20v-5h8v5M9 10h.01M12 10h.01M15 10h.01"></path></svg>城市</span><span class="info-value" id="city"></span></div>
+                    <div class="info-item"><span class="info-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h14v15H5zM8 8h8M8 12h8M8 16h4"></path></svg>邮政编码</span><span class="info-value" id="zip"></span></div>
+                    <div class="info-item"><span class="info-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18.5h16M6 15.5h12M8 12.5h8M10 9.5h4M12 5.5v-2"></path></svg>运营商</span><span class="info-value" id="isp"></span></div>
+                    <div class="info-item"><span class="info-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5h16M5.5 17V7.5L12 4l6.5 3.5V17M8.5 17v-4h7v4"></path></svg>组织 / AS</span><span class="info-value" id="org"></span></div>
+                    <div class="info-item"><span class="info-label"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="m12 7-2 6 6-2-4-4Z"></path></svg>经纬度</span><span class="info-value" id="location"></span></div>
+                    <div class="info-item"><span class="info-label"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7v5l3.5 2"></path></svg>时区</span><span class="info-value" id="timezone"></span></div>
+                </div>
+
+                <div class="map-container">
+                    <div class="map-copy"><p class="section-kicker">LOCATION</p><h3>在地图上查看</h3><p>通过经纬度快速打开地图，了解大致位置。</p></div>
+                    <div id="mapLink" class="map-link"></div>
+                </div>
+            </section>
+
+            <section class="instructions" aria-labelledby="instructions-title">
+                <div class="instructions-intro"><p class="section-kicker">HOW IT WORKS</p><h2 id="instructions-title">三步完成查询</h2><p>适合网络排查、开发测试，也适合快速了解自己的公网出口。</p></div>
+                <ol class="steps-list">
+                    <li><span>01</span><div><strong>输入地址</strong><p>填写一个有效的 IPv4 地址。</p></div></li>
+                    <li><span>02</span><div><strong>开始查询</strong><p>点击按钮，等待数据返回。</p></div></li>
+                    <li><span>03</span><div><strong>查看结果</strong><p>浏览位置、运营商和时区信息。</p></div></li>
+                </ol>
+                <div class="api-notice"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 10.5v5M12 7.5h.01"></path></svg><span><strong>数据提示：</strong>定位结果来自第三方 IP 数据服务，仅用于参考，不代表精确物理位置。</span></div>
+            </section>
+        </main>
 
         <footer>
-            <p>数据来源：<a href="https://ipinfo.io" target="_blank">IPinfo.io</a></p>
-            <p>© 2025 IP归属地查询工具 | <a href="about.html">关于我们</a> | <a href="privacy.html">隐私政策</a></p>
+            <p>© 2026 IP Atlas · <a href="about.html">关于</a> · <a href="privacy.html">隐私政策</a></p>
         </footer>
     </div>
-
     <script src="js/app.js"></script>
 </body>
 </html>

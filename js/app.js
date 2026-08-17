@@ -35,11 +35,15 @@ function showLoading() {
     elements.loading.style.display = 'block';
     elements.error.style.display = 'none';
     elements.ipInfo.style.display = 'none';
+    elements.searchBtn.disabled = true;
+    elements.searchBtn.querySelector('.btn-text').textContent = '查询中…';
 }
 
 // 隐藏加载状态
 function hideLoading() {
     elements.loading.style.display = 'none';
+    elements.searchBtn.disabled = false;
+    elements.searchBtn.querySelector('.btn-text').textContent = '开始查询';
 }
 
 // 显示错误信息
@@ -126,7 +130,7 @@ function displayIPInfo(data) {
 
     // 更新IP类型（根据是否为内网IP判断）
     const ipType = isPrivateIP(data.ip) ? '内网IP' : '公网IP';
-    document.getElementById('ipType').textContent = ipType;
+    document.getElementById('ipType').innerHTML = `<span class="status-dot"></span>${ipType}`;
 
     // 解析经纬度
     let lat = null, lon = null;
@@ -156,12 +160,12 @@ function displayIPInfo(data) {
     document.getElementById('isp').textContent = ispName;
     document.getElementById('org').textContent = orgName;
     document.getElementById('location').textContent =
-        lat && lon ? `${lat}, ${lon}` : '-';
+        Number.isFinite(lat) && Number.isFinite(lon) ? `${lat}, ${lon}` : '-';
     document.getElementById('timezone').textContent = data.timezone || '-';
 
     // 更新地图链接
     const mapLink = document.getElementById('mapLink');
-    if (lat && lon) {
+    if (Number.isFinite(lat) && Number.isFinite(lon)) {
         mapLink.innerHTML = `
             <p>📌 在地图上查看：</p>
             <a href="https://www.google.com/maps?q=${lat},${lon}" target="_blank">
