@@ -1,6 +1,6 @@
 # IP归属地查询工具
 
-一个简洁易用的纯前端IP地址归属地查询应用，采用Facebook设计风格。
+一个简洁易用的纯前端 IP 地址归属地查询应用，采用 Atlas 杂志感网络地图风格。
 
 ## 功能特点
 
@@ -10,7 +10,7 @@
 - **地图定位**：支持在Google Maps和OpenStreetMap上查看地理位置
 - **IP类型识别**：自动识别公网IP和内网IP
 - **响应式设计**：完美适配PC端和移动端
-- **Facebook风格**：简洁专业的现代化界面设计
+- **Atlas 地图风格**：暖白纸张、电光蓝与橙色信号的编辑型界面
 - **免费无限制**：使用免费API，无需注册和申请密钥
 
 ## 使用说明
@@ -80,7 +80,7 @@
 - **HTML5**：页面结构
 - **CSS3**：Facebook风格界面设计（响应式布局、动画效果）
 - **JavaScript (ES6+)**：业务逻辑（Async/Await、Fetch API）
-- **IP-API.com**：免费IP地理位置查询服务
+- **IPinfo.io**：免费 IP 地理位置查询服务
 
 ## 文件结构
 
@@ -96,7 +96,7 @@ ip_location/
 
 ## API说明
 
-本项目使用 [ip-api.com](http://ip-api.com) 提供的免费API服务。
+本项目使用 [IPinfo.io](https://ipinfo.io) 提供的免费 API 服务。
 
 ### API特点
 

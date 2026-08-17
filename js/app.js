@@ -36,14 +36,14 @@ function showLoading() {
     elements.error.style.display = 'none';
     elements.ipInfo.style.display = 'none';
     elements.searchBtn.disabled = true;
-    elements.searchBtn.querySelector('.btn-text').textContent = '查询中…';
+    elements.searchBtn.querySelector('.btn-text').textContent = '定位中…';
 }
 
 // 隐藏加载状态
 function hideLoading() {
     elements.loading.style.display = 'none';
     elements.searchBtn.disabled = false;
-    elements.searchBtn.querySelector('.btn-text').textContent = '开始查询';
+    elements.searchBtn.querySelector('.btn-text').textContent = '开始定位';
 }
 
 // 显示错误信息
@@ -72,12 +72,12 @@ async function queryIP() {
     const ip = elements.ipInput.value.trim();
 
     if (!ip) {
-        showError('⚠️ 请输入IP地址');
+        showError('请输入 IP 地址。');
         return;
     }
 
     if (!validateIP(ip)) {
-        showError('⚠️ 请输入有效的IP地址格式（如：8.8.8.8）');
+        showError('请输入有效的 IPv4 地址格式，例如 8.8.8.8。');
         return;
     }
 
@@ -117,7 +117,7 @@ async function fetchIPInfo(ip) {
 
     } catch (error) {
         console.error('查询IP信息失败:', error);
-        showError(`❌ 查询失败: ${error.message}`);
+        showError(`查询失败：${error.message}`);
     } finally {
         hideLoading();
     }
@@ -167,17 +167,16 @@ function displayIPInfo(data) {
     const mapLink = document.getElementById('mapLink');
     if (Number.isFinite(lat) && Number.isFinite(lon)) {
         mapLink.innerHTML = `
-            <p>📌 在地图上查看：</p>
-            <a href="https://www.google.com/maps?q=${lat},${lon}" target="_blank">
+            <p>MAP LINKS / 打开地图</p>
+            <a href="https://www.google.com/maps?q=${lat},${lon}" target="_blank" rel="noreferrer">
                 Google Maps
             </a>
-            &nbsp;|&nbsp;
-            <a href="https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}&zoom=12" target="_blank">
+            <a href="https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}&zoom=12" target="_blank" rel="noreferrer">
                 OpenStreetMap
             </a>
         `;
     } else {
-        mapLink.innerHTML = '<p>暂无地理位置信息</p>';
+        mapLink.innerHTML = '<p>暂无可用的地理坐标</p>';
     }
 
     // 显示结果

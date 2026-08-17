@@ -3,116 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0d1b2a">
-    <title>IP Atlas — IP归属地查询</title>
-    <meta name="description" content="快速查询 IP 地址的国家、地区、城市、运营商、坐标和时区信息。">
+    <meta name="theme-color" content="#f6f1e8">
+    <title>Atlas — IP 归属地查询</title>
+    <meta name="description" content="快速查询 IP 地址的网络归属地、运营商、坐标与时区信息。">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="page-shell">
+    <div class="site-shell">
         <nav class="top-nav" aria-label="主导航">
-            <a class="brand" href="index.html" aria-label="IP Atlas 首页">
-                <span class="brand-mark" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                        <circle cx="12" cy="12" r="8.25"></circle>
-                        <path d="M3.9 9.5h16.2M3.9 14.5h16.2M12 3.75c2.1 2.2 3.15 4.95 3.15 8.25S14.1 18.05 12 20.25c-2.1-2.2-3.15-4.95-3.15-8.25S9.9 5.95 12 3.75Z"></path>
-                    </svg>
-                </span>
-                <span class="brand-copy"><strong>IP Atlas</strong><small>网络归属地查询</small></span>
+            <a class="brand" href="index.html" aria-label="Atlas 首页">
+                <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><rect width="48" height="48" rx="15" fill="currentColor"></rect><path d="m13 35 11-23 11 23h-7l-4-10-4 10h-7Z" fill="#fffdf8"></path><circle cx="32.5" cy="14.5" r="3.2" fill="#ff6a3d"></circle></svg></span>
+                <span class="brand-copy"><strong>atlas</strong><small>network locator</small></span>
             </a>
-            <div class="nav-links">
-                <a href="index.html" class="active">查询</a>
-                <a href="about.html">关于</a>
-            </div>
+            <div class="nav-right"><div class="nav-links"><a href="index.html" class="active">查询</a><a href="about.html">关于</a></div><span class="grid-tag"><span></span> ONLINE / 24H</span></div>
         </nav>
 
         <main>
-            <section class="hero" aria-labelledby="hero-title">
-                <div class="eyebrow"><span class="eyebrow-dot"></span>实时 IP intelligence</div>
-                <h1 id="hero-title">知道一个 IP，<span>了解它所在的世界。</span></h1>
-                <p>输入一个 IPv4 地址，快速查看它的网络归属地、运营商和地理信息。</p>
-                <div class="hero-meta" aria-label="服务特点">
-                    <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"></path></svg>无需注册</span>
-                    <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v4m0 10v4M3 12h4m10 0h4M5.64 5.64l2.83 2.83m7.06 7.06 2.83 2.83m0-12.72-2.83 2.83m-7.06 7.06-2.83 2.83"></path></svg>快速响应</span>
-                    <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19 6v5.1c0 4.25-2.95 7.95-7 9.4-4.05-1.45-7-5.15-7-9.4V6l7-2.5Z"></path><path d="m9.25 12 1.8 1.8 3.7-3.7"></path></svg>仅供参考</span>
+            <section class="hero-grid" aria-labelledby="hero-title">
+                <div class="hero-copy">
+                    <p class="eyebrow">IP INTELLIGENCE <span>№ 01</span></p>
+                    <h1 id="hero-title">定位一个 IP，<br><span>读懂一张网络地图。</span></h1>
+                    <p class="hero-lede">从地址出发，找到它所在的城市、运营商与时区。Atlas 把网络信息整理成一眼就能读懂的结果。</p>
+                    <div class="hero-signature"><span class="signature-line"></span><span>简单、快速、仅供参考</span></div>
+                </div>
+                <div class="hero-art" aria-hidden="true">
+                    <div class="art-label">SIGNAL / MAP</div>
+                    <div class="art-compass"><span class="compass-n">N</span><span class="compass-e">E</span><span class="compass-s">S</span><span class="compass-w">W</span><div class="compass-cross"></div><div class="compass-needle"></div><div class="compass-dot"></div></div>
+                    <div class="art-coordinate"><small>REFERENCE POINT</small><strong>31° 14' N</strong><strong>121° 28' E</strong></div>
+                    <div class="art-sticker">LOCATE<br>WITH<br>CONTEXT</div>
                 </div>
             </section>
 
-            <section class="search-card" aria-labelledby="search-title">
-                <div class="card-heading">
-                    <div>
-                        <p class="section-kicker">LOOKUP</p>
-                        <h2 id="search-title">查询 IP 地址</h2>
-                    </div>
-                    <span class="card-note">支持 IPv4 格式</span>
-                </div>
+            <section id="lookup" class="lookup-card" aria-labelledby="lookup-title">
+                <div class="lookup-card-head"><div><p class="section-kicker">START HERE</p><h2 id="lookup-title">查询一个地址</h2></div><span class="lookup-count">IPv4 ONLY / PUBLIC DATA</span></div>
                 <form id="lookupForm" class="search-box" onsubmit="event.preventDefault(); queryIP();">
                     <label class="sr-only" for="ipInput">IP 地址</label>
-                    <div class="input-wrap">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17Z"></path><path d="M3.9 9.5h16.2M3.9 14.5h16.2M12 3.75c2.1 2.2 3.15 4.95 3.15 8.25S14.1 18.05 12 20.25c-2.1-2.2-3.15-4.95-3.15-8.25S9.9 5.95 12 3.75Z"></path></svg>
-                        <input type="text" id="ipInput" inputmode="decimal" placeholder="例如 8.8.8.8" autocomplete="off" spellcheck="false">
-                    </div>
-                    <button id="searchBtn" type="submit">
-                        <span class="btn-text">开始查询</span>
-                        <svg class="btn-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5"></path></svg>
-                    </button>
+                    <div class="input-wrap"><span class="input-prefix">IP</span><input type="text" id="ipInput" inputmode="decimal" placeholder="输入 8.8.8.8" autocomplete="off" spellcheck="false"></div>
+                    <button id="searchBtn" type="submit"><span class="btn-text">开始定位</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5"></path></svg></button>
                 </form>
-                <div class="search-footer">
-                    <span class="helper-text">也可以先看看你当前网络的公网 IP</span>
-                    <button class="btn-secondary" type="button" onclick="queryMyIP()">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s6-5.1 6-10.2a6 6 0 1 0-12 0c0 5.1 6 10.2 6 10.2Z"></path><circle cx="12" cy="10.3" r="2.1"></circle></svg>
-                        查询我的 IP
-                    </button>
-                </div>
+                <div class="lookup-foot"><span><span class="online-dot"></span> 不需要账号，也不保存查询历史</span><button class="btn-secondary" type="button" onclick="queryMyIP()">定位我的 IP <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s6-5.1 6-10.2a6 6 0 1 0-12 0c0 5.1 6 10.2 6 10.2Z"></path><circle cx="12" cy="10.3" r="2.1"></circle></svg></button></div>
             </section>
 
-            <div id="loading" class="loading" role="status" aria-live="polite" style="display: none;">
-                <span class="loading-mark" aria-hidden="true"></span>
-                <div><strong>正在获取 IP 信息</strong><p>通常只需要几秒钟</p></div>
-            </div>
-
+            <div id="loading" class="loading" role="status" aria-live="polite" style="display: none;"><span class="loading-mark" aria-hidden="true"></span><div><strong>正在定位网络节点</strong><p>Atlas 正在读取公开 IP 数据…</p></div></div>
             <div id="error" class="error" role="alert" aria-live="assertive" style="display: none;"></div>
 
-            <section id="ipInfo" class="ip-info" aria-labelledby="result-title" style="display: none;">
-                <div class="info-header">
-                    <div>
-                        <p class="section-kicker">RESULT</p>
-                        <h2 id="result-title"><span id="ipAddress"></span></h2>
-                    </div>
-                    <span id="ipType" class="ip-type"><span class="status-dot"></span></span>
+            <section id="ipInfo" class="result-card" aria-labelledby="result-title" style="display: none;">
+                <div class="result-card-top"><span class="section-kicker">FOUND / 01</span><span class="result-label">LOCATION REPORT</span></div>
+                <div class="result-heading"><div><p class="section-kicker">IDENTIFIED IP</p><h2 id="result-title"><span id="ipAddress"></span></h2></div><span id="ipType" class="ip-type"><span class="status-dot"></span></span></div>
+                <div class="result-layout">
+                    <div class="location-block"><span class="data-label">PRIMARY LOCATION</span><div class="location-main"><span class="pin-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s6-5.1 6-10.2a6 6 0 1 0-12 0c0 5.1 6 10.2 6 10.2Z"></path><circle cx="12" cy="10.3" r="2.1"></circle></svg></span><div><strong id="city"></strong><span><span id="region"></span><i>/</i><span id="country"></span></span></div></div><div class="location-coordinates"><span>COORDINATES</span><strong id="location"></strong></div></div>
+                    <div class="data-tile"><span class="data-label">POSTAL CODE</span><strong id="zip"></strong><small>邮政编码</small></div>
+                    <div class="data-tile"><span class="data-label">TIMEZONE</span><strong id="timezone"></strong><small>所在时区</small></div>
+                    <div class="network-block"><span class="data-label">NETWORK IDENTITY</span><div><span>ISP</span><strong id="isp"></strong></div><div><span>ORG / AS</span><strong id="org"></strong></div></div>
                 </div>
-
-                <div class="info-grid">
-                    <div class="info-item"><span class="info-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s6-5.1 6-10.2a6 6 0 1 0-12 0c0 5.1 6 10.2 6 10.2Z"></path><circle cx="12" cy="10.3" r="2.1"></circle></svg>国家 / 地区</span><span class="info-value" id="country"></span></div>
-                    <div class="info-item"><span class="info-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5h16M5.5 17V7.5L12 4l6.5 3.5V17M8.5 17v-4h7v4M8.5 9.5h.01M12 9.5h.01M15.5 9.5h.01"></path></svg>省份 / 州</span><span class="info-value" id="region"></span></div>
-                    <div class="info-item"><span class="info-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10l8-6 8 6v10M8 20v-5h8v5M9 10h.01M12 10h.01M15 10h.01"></path></svg>城市</span><span class="info-value" id="city"></span></div>
-                    <div class="info-item"><span class="info-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h14v15H5zM8 8h8M8 12h8M8 16h4"></path></svg>邮政编码</span><span class="info-value" id="zip"></span></div>
-                    <div class="info-item"><span class="info-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18.5h16M6 15.5h12M8 12.5h8M10 9.5h4M12 5.5v-2"></path></svg>运营商</span><span class="info-value" id="isp"></span></div>
-                    <div class="info-item"><span class="info-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5h16M5.5 17V7.5L12 4l6.5 3.5V17M8.5 17v-4h7v4"></path></svg>组织 / AS</span><span class="info-value" id="org"></span></div>
-                    <div class="info-item"><span class="info-label"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="m12 7-2 6 6-2-4-4Z"></path></svg>经纬度</span><span class="info-value" id="location"></span></div>
-                    <div class="info-item"><span class="info-label"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7v5l3.5 2"></path></svg>时区</span><span class="info-value" id="timezone"></span></div>
-                </div>
-
-                <div class="map-container">
-                    <div class="map-copy"><p class="section-kicker">LOCATION</p><h3>在地图上查看</h3><p>通过经纬度快速打开地图，了解大致位置。</p></div>
-                    <div id="mapLink" class="map-link"></div>
-                </div>
+                <div class="map-row"><div><span class="data-label">OPEN MAP</span><h3>把结果放回地图</h3><p>通过坐标查看它所在的大致区域。</p></div><div id="mapLink" class="map-link"></div></div>
             </section>
 
-            <section class="instructions" aria-labelledby="instructions-title">
-                <div class="instructions-intro"><p class="section-kicker">HOW IT WORKS</p><h2 id="instructions-title">三步完成查询</h2><p>适合网络排查、开发测试，也适合快速了解自己的公网出口。</p></div>
-                <ol class="steps-list">
-                    <li><span>01</span><div><strong>输入地址</strong><p>填写一个有效的 IPv4 地址。</p></div></li>
-                    <li><span>02</span><div><strong>开始查询</strong><p>点击按钮，等待数据返回。</p></div></li>
-                    <li><span>03</span><div><strong>查看结果</strong><p>浏览位置、运营商和时区信息。</p></div></li>
-                </ol>
-                <div class="api-notice"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 10.5v5M12 7.5h.01"></path></svg><span><strong>数据提示：</strong>定位结果来自第三方 IP 数据服务，仅用于参考，不代表精确物理位置。</span></div>
-            </section>
+            <section class="guide-section" aria-labelledby="guide-title"><div class="guide-intro"><p class="section-kicker">WHY ATLAS</p><h2 id="guide-title">一份更诚实的 IP 结果。</h2><p>定位是线索，不是判决。我们把能确认的信息清楚列出，也把不确定的边界说在前面。</p></div><div class="guide-list"><div><span>01</span><strong>先看上下文</strong><p>国家、城市、运营商和组织共同组成一份 IP 画像。</p></div><div><span>02</span><strong>再看坐标</strong><p>地图链接帮助你建立空间感，但不会伪装成精确地址。</p></div><div><span>03</span><strong>保持判断</strong><p>代理、VPN、移动网络都会影响定位结果，请仅作参考。</p></div></div><div class="data-notice"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 10.5v5M12 7.5h.01"></path></svg><span><strong>数据边界：</strong>IP 归属地通常精确到城市或网络节点，不代表真实物理位置。</span></div></section>
         </main>
 
-        <footer>
-            <p>© 2026 IP Atlas · <a href="about.html">关于</a> · <a href="privacy.html">隐私政策</a></p>
-        </footer>
+        <footer><div class="footer-mark"><span>A</span> atlas / network locator</div><p>© 2026 Atlas · <a href="about.html">关于</a> · <a href="privacy.html">隐私政策</a></p></footer>
     </div>
     <script src="js/app.js"></script>
 </body>
